@@ -21,7 +21,7 @@ static void die(const char *msg) {
 
 static void do_something(int connfd) {
     char rbuf[64] = {};
-    ssize_t n = read(connfd, rbuf, sizeof(rbut) - 1);
+    ssize_t n = read(connfd, rbuf, sizeof(rbuf) - 1);
     if (n < 0) {
         msg("read() error");
         return;
@@ -60,7 +60,7 @@ int main() {
         }
 
         do_something(connfd);
-        close(connfd)
+        close(connfd);
     }
     return 0;
 }
