@@ -19,7 +19,18 @@ static void die(const char *msg) {
     abort();
 }
 
+static void do_something(int connfd) {
+    char rbuf[64] = {};
+    ssize_t n = read(connfd, rbuf, sizeof(rbut) - 1);
+    if (n < 0) {
+        msg("read() error");
+        return;
+    }
+    printf("client says: %s\n", rbuf);
 
+    char wbuf[] = "world";
+    write(connfd, wbuf, strlen(wbuf));
+}
 
 int main() {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -47,6 +58,9 @@ int main() {
         if (connfd < 0) {
             continue;
         }
+
+        do_something(connfd);
+        close(connfd)
     }
     return 0;
 }
