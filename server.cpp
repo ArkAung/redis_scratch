@@ -51,6 +51,12 @@ int main() {
         die("bind()");
     }
 
+    //listen
+    rv = listen(fd, SOMAXCONN);
+    if (rv) {
+        die("listen()");
+    }
+
     while (true) {
         struct sockaddr_in client_addr = {};
         socklen_t socklen = sizeof(client_addr);
